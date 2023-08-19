@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Le ou la?</title>
+    <link rel="stylesheet" href="./styles.css" />
+    <script src="script.js"></script>
+  </head>
+  <body>
+    <div class="container">
+      <div class="heading">Le ou la?</div>
+      <div class="word" id="word">maison</div>
+      <div class="buttons">
+        <button class="knopf le" onclick="evaluate_answer('m')">LE</button>
+        <button class="knopf la" onclick="evaluate_answer('f')">LA</button>
+      </div>
+      <div class="stats" id="stats"></div>
+      <div class="stats_perc" id="stats_perc"></div>
+      <div class="history">
+        <table id="history_table">
+          <tbody></tbody>
+        </table>
+      </div>
+    </div>
+  </body>
+</html>

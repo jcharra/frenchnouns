@@ -1,0 +1,80 @@
+body {
+  background-color: black;
+}
+
+.container {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  padding: 20px;
+}
+
+.heading {
+  color: white;
+  font-size: 64px;
+  text-align: center;
+}
+
+.word {
+  color: rosybrown;
+  font-size: 32px;
+  text-align: center;
+  padding: 50px;
+}
+
+.stats {
+  color: greenyellow;
+  font-size: 32px;
+  text-align: center;
+  padding: 20px;
+  font-weight: 700;
+}
+
+.stats_perc {
+  color: yellow;
+  font-size: 16px;
+  text-align: center;
+  font-weight: 700;
+  padding-bottom: 10px;
+}
+
+.knopf {
+  padding: 40px;
+  font-size: 30px;
+  border-radius: 10px;
+  margin: 20px;
+  font-weight: 600;
+  color: white;
+  border: 2px solid lightgray;
+}
+
+.le {
+  background-color: green;
+}
+
+.knopf:hover {
+  border: 2px solid yellow;
+  color: yellow;
+  cursor: pointer;
+}
+
+.le:active {
+  background-color: lightgreen;
+}
+
+.la {
+  background-color: blue;
+}
+
+.la:active {
+  background-color: lightblue;
+}
+
+.history {
+  color: white;
+  font-size: 20px;
+}
+
+.history td {
+  padding: 5px;
+}
