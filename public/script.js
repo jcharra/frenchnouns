@@ -4,7 +4,7 @@ let count = 0;
 let correct = 0;
 let starttime = 0;
 let score = 0;
-const COUNT_LIMIT = 5;
+const COUNT_LIMIT = 50;
 
 function reset_values() {
   current = "";
