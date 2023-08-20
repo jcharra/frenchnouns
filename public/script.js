@@ -80,7 +80,6 @@ function display_result() {
   const total = Math.round(prec_squared * score);
   document.getElementById("total").innerHTML = total;
   show_section("result");
-  reset_values();
 }
 
 function push_history(word, correct, time, word_score) {
@@ -97,7 +96,7 @@ function push_history(word, correct, time, word_score) {
   word_cell.innerHTML = word;
   eval_cell.innerHTML = correct ? "✅" : "❌";
   time_cell.innerHTML = time + "s";
-  word_score_cell.innerHTML = word_score;
+  word_score_cell.innerHTML = word_score + "P";
 
   word_cell.classList.add("wide_cell");
 }
@@ -117,6 +116,7 @@ function show_section(section_id) {
 }
 
 function start() {
+  reset_values();
   show_section("game");
   display_next_word();
 }
