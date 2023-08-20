@@ -16,6 +16,13 @@
       </div>
       <div class="result hidden" id="result">
         <div class="score">Ton score: <span id="total"></span></div>
+        <div class="score_desc">
+          <div>Points = <span id="points"></span></div>
+          <div>Précision = <span id="precision"></span></div>
+          <div>
+            Score = Points x précision<sup>2</sup> = <span id="points_desc"></span> x <span id="prec_squared"></span>
+          </div>
+        </div>
         <button class="knopf" onclick="start()">Jouer à nouveau</button>
       </div>
       <div class="game hidden" id="game">

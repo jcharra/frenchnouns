@@ -3,7 +3,8 @@ let currentGender = "";
 let count = 0;
 let correct = 0;
 let starttime = 0;
-const COUNT_LIMIT = 50;
+let score = 0;
+const COUNT_LIMIT = 5;
 
 function reset_values() {
   current = "";
@@ -27,6 +28,7 @@ async function next() {
 }
 
 async function display_next_word() {
+  document.getElementById("word").innerHTML = "...";
   const data = await next();
   starttime = new Date();
 
@@ -43,11 +45,15 @@ async function display_next_word() {
 function evaluate_answer(gender) {
   const time_in_secs = ((new Date() - starttime) / 1000).toFixed(2);
   const isCorrect = gender === currentGender;
+  let word_score = 0;
   if (isCorrect) {
     correct++;
+    const time_bonus = Math.max(0, 5 - time_in_secs);
+    word_score = Math.round(time_bonus * 10);
+    score += word_score;
   }
 
-  push_history(current, isCorrect, time_in_secs);
+  push_history(current, isCorrect, time_in_secs, word_score);
   count++;
 
   refresh_stats();
@@ -65,16 +71,19 @@ function refresh_stats() {
 }
 
 function display_result() {
-  //document.getElementById("points").innerHTML = correct;
-  const prec_squared = ((correct / count) ** 2).toFixed(2);
-  //document.getElementById("prec_squared").innerHTML = prec_squared;
-  const total = Math.round(prec_squared * correct);
+  document.getElementById("points").innerHTML = score;
+  document.getElementById("points_desc").innerHTML = score;
+  const precision = correct / count;
+  const prec_squared = (precision ** 2).toFixed(2);
+  document.getElementById("precision").innerHTML = (100 * precision).toFixed(2) + "%";
+  document.getElementById("prec_squared").innerHTML = prec_squared;
+  const total = Math.round(prec_squared * score);
   document.getElementById("total").innerHTML = total;
   show_section("result");
   reset_values();
 }
 
-function push_history(word, correct, time) {
+function push_history(word, correct, time, word_score) {
   const table = document.getElementById("history_table");
 
   const tbody = table.getElementsByTagName("tbody")[0];
@@ -84,9 +93,11 @@ function push_history(word, correct, time) {
   const word_cell = newRow.insertCell(0);
   const eval_cell = newRow.insertCell(1);
   const time_cell = newRow.insertCell(2);
+  const word_score_cell = newRow.insertCell(3);
   word_cell.innerHTML = word;
   eval_cell.innerHTML = correct ? "✅" : "❌";
   time_cell.innerHTML = time + "s";
+  word_score_cell.innerHTML = word_score;
 
   word_cell.classList.add("wide_cell");
 }
