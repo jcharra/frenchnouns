@@ -94,7 +94,6 @@ body {
 
 .result .knopf {
   padding: 20px;
-  margin-top: 40px;
   background-color: lightgreen;
 }
 
@@ -109,7 +108,6 @@ body {
 .score {
   color: gold;
   font-size: 32px;
-  text-align: left;
   padding: 37px;
   transition: 1s;
   font-weight: 900;
@@ -119,4 +117,19 @@ body {
 .score_desc {
   color: lightgray;
   font-size: small;
+}
+
+.classification {
+  color: orange;
+  font-size: 32px;
+  text-align: center;
+  padding: 20px 0;
+  font-weight: 900;
+  opacity: 0;
+}
+
+.fadein {
+  transition: 2s;
+  opacity: 1;
+  color: lightgreen;
 }

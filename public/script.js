@@ -4,6 +4,7 @@ let count = 0;
 let correct = 0;
 let starttime = 0;
 let score = 0;
+let confetti_end_time = 0;
 const COUNT_LIMIT = 50;
 
 function reset_values() {
@@ -12,6 +13,7 @@ function reset_values() {
   count = 0;
   correct = 0;
   starttime = 0;
+  score = 0;
 
   const table = document.getElementById("history_table");
   while (table.rows.length > 0) {
@@ -20,6 +22,8 @@ function reset_values() {
 
   document.getElementById("stats").innerHTML = "";
   document.getElementById("stats_perc").innerHTML = "";
+  document.getElementById("classification").innerHTML = "";
+  document.getElementById("classification").classList.remove("fadein");
 }
 
 async function next() {
@@ -30,12 +34,12 @@ async function next() {
 async function display_next_word() {
   document.getElementById("word").innerHTML = "...";
   const data = await next();
-  starttime = new Date();
 
   if (data.noun) {
-    const [noun, gender, mp3] = data.noun;
+    const [noun, gender] = data.noun;
     [current, currentGender] = [noun, gender];
     document.getElementById("word").innerHTML = current;
+    starttime = new Date();
   } else {
     console.error("Error fetching noun");
     setTimeout(200, display_next_word);
@@ -70,6 +74,21 @@ function refresh_stats() {
   document.getElementById("stats_perc").innerHTML = ((100 * correct) / count).toFixed(2) + "%";
 }
 
+const classifications = ["Débutant(e)", "Pas mal", "Avancé(e)", "Expert(e)", "Langue maternelle"];
+function getLevel(score) {
+  if (score > 1500) {
+    return 4;
+  } else if (score > 1250) {
+    return 3;
+  } else if (score > 1000) {
+    return 2;
+  } else if (score > 750) {
+    return 1;
+  } else {
+    return 0;
+  }
+}
+
 function display_result() {
   document.getElementById("points").innerHTML = score;
   document.getElementById("points_desc").innerHTML = score;
@@ -80,6 +99,14 @@ function display_result() {
   const total = Math.round(prec_squared * score);
   document.getElementById("total").innerHTML = total;
   show_section("result");
+  const classification = document.getElementById("classification");
+  const niveau = getLevel(total);
+  classification.innerHTML = "Niveau: " + classifications[niveau];
+  setTimeout(() => classification.classList.add("fadein"), 100);
+  if (niveau > 0) {
+    confetti_end_time = Date.now() + niveau * 1000;
+    party();
+  }
 }
 
 function push_history(word, correct, time, word_score) {
@@ -119,4 +146,26 @@ function start() {
   reset_values();
   show_section("game");
   display_next_word();
+}
+
+const colors = ["#bb0000", "#ffffff", "#ffff00"];
+function party() {
+  confetti({
+    particleCount: 3,
+    angle: 60,
+    spread: 55,
+    origin: { x: 0 },
+    colors: colors,
+  });
+  confetti({
+    particleCount: 3,
+    angle: 120,
+    spread: 55,
+    origin: { x: 1 },
+    colors: colors,
+  });
+
+  if (Date.now() < confetti_end_time) {
+    requestAnimationFrame(party);
+  }
 }
