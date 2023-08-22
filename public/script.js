@@ -22,6 +22,7 @@ function reset_values() {
 
   document.getElementById("stats").innerHTML = "";
   document.getElementById("stats_perc").innerHTML = "";
+  document.getElementById("stats_points").innerHTML = "";
   document.getElementById("classification").innerHTML = "";
   document.getElementById("classification").classList.remove("fadein");
 }
@@ -53,11 +54,12 @@ function evaluate_answer(gender) {
   if (isCorrect) {
     correct++;
     const time_bonus = Math.max(0, 5 - time_in_secs);
-    word_score = Math.round(time_bonus * 10);
+    // 5 points minimum for a correct answer
+    word_score = Math.max(5, Math.round(time_bonus * 10));
     score += word_score;
   }
 
-  push_history(current, isCorrect, time_in_secs, word_score);
+  push_history(currentGender, current, isCorrect, time_in_secs, word_score);
   count++;
 
   refresh_stats();
@@ -71,7 +73,8 @@ function evaluate_answer(gender) {
 
 function refresh_stats() {
   document.getElementById("stats").innerHTML = correct + " / " + count;
-  document.getElementById("stats_perc").innerHTML = ((100 * correct) / count).toFixed(2) + "%";
+  document.getElementById("stats_perc").innerHTML = "Précision: " + ((100 * correct) / count).toFixed(2) + "%";
+  document.getElementById("stats_points").innerHTML = "Points: " + score;
 }
 
 const classifications = ["Débutant(e)", "Pas mal", "Avancé(e)", "Expert(e)", "Langue maternelle"];
@@ -104,26 +107,30 @@ function display_result() {
   classification.innerHTML = "Niveau: " + classifications[niveau];
   setTimeout(() => classification.classList.add("fadein"), 100);
   if (niveau > 0) {
-    confetti_end_time = Date.now() + niveau * 1000;
+    confetti_end_time = Date.now() + niveau * 500;
     party();
   }
 }
 
-function push_history(word, correct, time, word_score) {
+function push_history(gender, word, correct, time, word_score) {
   const table = document.getElementById("history_table");
 
   const tbody = table.getElementsByTagName("tbody")[0];
 
   const newRow = tbody.insertRow(0);
 
-  const word_cell = newRow.insertCell(0);
-  const eval_cell = newRow.insertCell(1);
-  const time_cell = newRow.insertCell(2);
-  const word_score_cell = newRow.insertCell(3);
+  const gender_symbol_cell = newRow.insertCell(0);
+  const word_cell = newRow.insertCell(1);
+  const eval_cell = newRow.insertCell(2);
+  const time_cell = newRow.insertCell(3);
+  const word_score_cell = newRow.insertCell(4);
+
+  gender_symbol_cell.innerHTML = gender === "f" ? "♀" : "♂";
   word_cell.innerHTML = word;
   eval_cell.innerHTML = correct ? "✅" : "❌";
   time_cell.innerHTML = time + "s";
   word_score_cell.innerHTML = word_score + "P";
+  word_score_cell.style.textAlign = "right";
 
   word_cell.classList.add("wide_cell");
 }
