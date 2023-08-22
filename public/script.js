@@ -55,7 +55,7 @@ function evaluate_answer(gender) {
     correct++;
     const time_bonus = Math.max(0, 5 - time_in_secs);
     // 5 points minimum for a correct answer
-    word_score = Math.max(5, Math.round(time_bonus * 10));
+    word_score = Math.max(5, Math.round(time_bonus * 10) + 1);
     score += word_score;
   }
 
