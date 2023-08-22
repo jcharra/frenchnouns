@@ -10,7 +10,7 @@ with open("words.json") as src:
             continue
 
         exp_parts = word.split()
-        if any([re.search("[A-Z]{2}", e) for e in exp_parts]) or re.search("\d", word):
+        if any([re.search("[A-Z]{2}", e) for e in exp_parts]) or re.search("\d", word) or not re.search("[A-Za-zéèêâ]{2}", word):
             print("Ignoring", exp_parts)
             continue
 
