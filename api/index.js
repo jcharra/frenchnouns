@@ -1,5 +1,5 @@
 import express from "express";
-import { NOUNS } from "../nouns.js";
+import { NOUNS } from "../nouns_lefff.js";
 
 const app = express();
 const port = 3000;
