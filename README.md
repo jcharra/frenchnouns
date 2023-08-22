@@ -1,7 +1,7 @@
 # frenchnouns
 
 Train your expertise in one of the most difficult tasks ever: Finding the proper article for a French noun.
-Check it out at https://frenchnouns.vercel.app
+Check it out at https://leoula.vercel.app
 
 ### Running locally:
 
