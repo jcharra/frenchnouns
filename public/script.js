@@ -155,17 +155,17 @@ function start() {
   display_next_word();
 }
 
-const colors = ["#bb0000", "#ffffff", "#ffff00"];
+const colors = ["#bb0000", "#ffffff", "#ffff00", "00ff00", "0000ff"];
 function party() {
   confetti({
-    particleCount: 3,
+    particleCount: 5,
     angle: 60,
     spread: 55,
     origin: { x: 0 },
     colors: colors,
   });
   confetti({
-    particleCount: 3,
+    particleCount: 5,
     angle: 120,
     spread: 55,
     origin: { x: 1 },
