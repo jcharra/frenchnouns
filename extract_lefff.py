@@ -1,6 +1,8 @@
 import json
 import re
 
+corrections = {"antiaméricanisme": "m"}
+
 nouns = []
 with open("words.json") as src:
     words = json.load(src)
@@ -14,8 +16,7 @@ with open("words.json") as src:
             print("Ignoring", exp_parts)
             continue
 
-        nouns.append([word, gender.lower()])
-
+        nouns.append([word, corrections.get(word, gender.lower())])
 
 with open("nouns_lefff.js", "w") as out:
     print(f"Writing {len(nouns)} nouns to file")

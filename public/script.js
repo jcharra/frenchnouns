@@ -176,3 +176,15 @@ function party() {
     requestAnimationFrame(party);
   }
 }
+
+function toggleInfo() {
+  console.log();
+  const info = document.getElementById("info");
+  if (info.classList.contains("minimized")) {
+    info.classList.remove("minimized");
+    info.classList.add("maximized");
+  } else {
+    info.classList.add("minimized");
+    info.classList.remove("maximized");
+  }
+}
