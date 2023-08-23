@@ -3,6 +3,10 @@ body {
   width: 100vw;
 }
 
+* {
+  -webkit-tap-highlight-color: transparent;
+}
+
 .container {
   display: flex;
   align-items: center;

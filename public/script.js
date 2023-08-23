@@ -177,6 +177,20 @@ function party() {
   }
 }
 
+// Avoid double tap zoom on iphone
+let lastTouchEnd = 0;
+let doublecount = 0;
+document.addEventListener("touchend", (event) => {
+  const now = new Date().getTime();
+  if (now - lastTouchEnd <= 300 && doublecount === 0) {
+    event.preventDefault();
+    doublecount = 1;
+  } else {
+    doublecount = 0;
+  }
+  lastTouchEnd = now;
+});
+
 function toggleInfo() {
   const info = document.getElementById("info");
   if (info.classList.contains("maximized")) {
