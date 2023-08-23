@@ -145,7 +145,7 @@ body {
 #info {
   font-weight: 600;
   color: #333;
-  position: absolute;
+  position: fixed;
   bottom: 5px;
   right: 5px;
   padding: 8px;
@@ -155,15 +155,12 @@ body {
   line-height: 1.5;
   border: 2px solid #333;
   font-family: "Courier New", Courier, monospace;
-}
-
-.minimized {
   opacity: 0;
   transition: 1s;
 }
 
 .maximized {
-  opacity: 1;
+  opacity: 1 !important;
   transition: 1s;
 }
 
@@ -173,7 +170,7 @@ body {
 }
 
 #infoicon {
-  position: absolute;
+  position: fixed;
   top: 10px;
   right: 10px;
   font-size: 20px;

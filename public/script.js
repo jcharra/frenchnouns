@@ -179,11 +179,9 @@ function party() {
 
 function toggleInfo() {
   const info = document.getElementById("info");
-  if (info.classList.contains("minimized")) {
-    info.classList.remove("minimized");
-    info.classList.add("maximized");
-  } else {
-    info.classList.add("minimized");
+  if (info.classList.contains("maximized")) {
     info.classList.remove("maximized");
+  } else {
+    info.classList.add("maximized");
   }
 }
