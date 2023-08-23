@@ -178,7 +178,6 @@ function party() {
 }
 
 function toggleInfo() {
-  console.log();
   const info = document.getElementById("info");
   if (info.classList.contains("minimized")) {
     info.classList.remove("minimized");

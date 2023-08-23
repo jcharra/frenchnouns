@@ -1,12 +1,5 @@
-body,
-html {
-  margin: 0;
-  padding: 0;
-}
-
 body {
   background-color: black;
-  overflow-x: hidden;
   width: 100vw;
 }
 
@@ -153,7 +146,8 @@ body {
   font-weight: 600;
   color: #333;
   position: absolute;
-  bottom: 20px;
+  bottom: 5px;
+  right: 5px;
   padding: 8px;
   background-color: white;
   border-radius: 5px;
@@ -164,17 +158,17 @@ body {
 }
 
 .minimized {
-  right: -100%;
+  opacity: 0;
   transition: 1s;
 }
 
 .maximized {
-  right: -15px;
+  opacity: 1;
   transition: 1s;
 }
 
 #info a {
-  color: blue;
+  color: orange;
   text-decoration: none;
 }
 
@@ -182,11 +176,8 @@ body {
   position: absolute;
   top: 10px;
   right: 10px;
-  background-color: white;
-  color: green;
   font-size: 20px;
   width: 25px;
-  border-radius: 50%;
   text-align: center;
   cursor: pointer;
 }
