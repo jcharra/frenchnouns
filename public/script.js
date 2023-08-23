@@ -5,6 +5,7 @@ let correct = 0;
 let starttime = 0;
 let score = 0;
 let confetti_end_time = 0;
+let input_blocked = true;
 const COUNT_LIMIT = 50;
 
 function reset_values() {
@@ -28,8 +29,11 @@ function reset_values() {
 }
 
 async function next() {
+  input_blocked = true;
   const res = await fetch("/api/noun");
-  return await res.json();
+  const word = await res.json();
+  input_blocked = false;
+  return word;
 }
 
 async function display_next_word() {
@@ -48,6 +52,9 @@ async function display_next_word() {
 }
 
 function evaluate_answer(gender) {
+  if (input_blocked) {
+    return;
+  }
   const time_in_secs = ((new Date() - starttime) / 1000).toFixed(2);
   const isCorrect = gender === currentGender;
   let word_score = 0;
@@ -182,7 +189,7 @@ let lastTouchEnd = 0;
 let doublecount = 0;
 document.addEventListener("touchend", (event) => {
   const now = new Date().getTime();
-  if (now - lastTouchEnd <= 300 && doublecount === 0) {
+  if (now - lastTouchEnd <= 200 && doublecount === 0) {
     event.preventDefault();
     doublecount = 1;
   } else {
