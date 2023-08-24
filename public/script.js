@@ -6,7 +6,7 @@ let starttime = 0;
 let score = 0;
 let confetti_end_time = 0;
 let input_blocked = true;
-const COUNT_LIMIT = 1;
+const COUNT_LIMIT = 50;
 
 function reset_values() {
   current = "";
