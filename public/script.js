@@ -198,11 +198,10 @@ document.addEventListener("touchend", (event) => {
   lastTouchEnd = now;
 });
 
-function toggleInfo() {
+function showInfo() {
   const info = document.getElementById("info");
-  if (info.classList.contains("maximized")) {
-    info.classList.remove("maximized");
-  } else {
+  if (!info.classList.contains("maximized")) {
     info.classList.add("maximized");
+    setTimeout(() => info.classList.remove("maximized"), 3000);
   }
 }
